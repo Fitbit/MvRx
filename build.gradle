@@ -14,6 +14,8 @@ buildscript {
         // Upload with:
         // ./gradlew clean uploadArchives --no-daemon --no-parallel
         classpath "com.vanniktech:gradle-maven-publish-plugin:0.11.1"
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // Add this line
+
     }
 
     configurations.all {
