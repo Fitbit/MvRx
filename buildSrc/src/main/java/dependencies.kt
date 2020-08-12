@@ -14,8 +14,8 @@ object Versions {
     const val constraintlayout = "1.1.3"
     const val core = "1.2.0"
     const val fragment = "1.2.3"
-    const val lifecycle = "2.2.0"
-    const val navigation = "2.2.1"
+    const val lifecycle = "2.3.0-alpha06"
+    const val navigation = "2.3.0"
     const val recyclerview = "1.1.0"
     const val room = "2.2.5"
 
