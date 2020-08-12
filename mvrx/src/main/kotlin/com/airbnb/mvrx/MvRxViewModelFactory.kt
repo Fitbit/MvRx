@@ -84,8 +84,8 @@ sealed class ViewModelContext {
  * _without_ a fragment reference, so it is only safe to reference the activity.
  */
 data class ActivityViewModelContext(
-    override val activity: FragmentActivity,
-    override val args: Any?
+        override val activity: FragmentActivity,
+        override val args: Any?
 ) : ViewModelContext() {
     override val owner get() = activity
     override val savedStateRegistry get() = activity.savedStateRegistry
@@ -94,18 +94,23 @@ data class ActivityViewModelContext(
 /**
  * The [ViewModelContext] for a ViewModel created with a
  * fragment scope (`val viewModel by fragmentViewModel<MyViewModel>`).
+ *
+ * The [owner] and [savedStateRegistry] default to the Fragment as the provider, if you need to use an alternative
+ * source for the [ViewModelStoreOwner] and/or [SavedStateRegistry]; such in the case of JetPack Navigation Component destinations with ViewModels,
+ * then you can provided them via this context.
  */
 data class FragmentViewModelContext(
-    override val activity: FragmentActivity,
-    override val args: Any?,
-    /**
-     * The fragment owner of the ViewModel.
-     */
-    val fragment: Fragment
+        override val activity: FragmentActivity,
+        override val args: Any?,
+        /**
+         * The fragment owner of the ViewModel.
+         */
+        val fragment: Fragment,
+        override val owner: ViewModelStoreOwner = fragment,
+        override val savedStateRegistry: SavedStateRegistry = fragment.savedStateRegistry
 ) : ViewModelContext() {
 
-    override val owner get() = fragment
-    override val savedStateRegistry get() = fragment.savedStateRegistry
+
     /**
      * Convenience method to type [fragment].
      */
