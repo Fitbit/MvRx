@@ -42,6 +42,7 @@ dependencies {
 
     implementation Libraries.appcompat
     implementation Libraries.lifecycleCommon
+    implementation Libraries.navigationFragmentKtx
 
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.mockito
