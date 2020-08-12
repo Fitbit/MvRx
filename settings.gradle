@@ -1,6 +1,7 @@
 // Libraries
 include ":mvrx"
 include ":testing"
+include ":mvrx-navigation"
 
 // Samples
 include ":counter"
@@ -8,3 +9,4 @@ include ":dogs"
 include ":hellodagger"
 include ":sample"
 include ":todomvrx"
+
