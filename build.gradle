@@ -28,6 +28,9 @@ plugins {
 }
 
 apply plugin: 'io.gitlab.arturbosch.detekt'
+apply plugin: 'maven'
+
+group = 'com.github.Fitbit'
 
 plugins.apply(AndroidMetaModulePlugin.class)
 
