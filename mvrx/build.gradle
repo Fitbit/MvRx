@@ -1,15 +1,20 @@
 import com.airbnb.mvrx.JacocoReportTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
-apply plugin: "kotlin-kapt"
 apply plugin: "jacoco"
 apply plugin: "com.vanniktech.maven.publish"
-apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.Fitbit'
-
+tasks.withType(KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-Xopt-in=kotlin.RequiresOptIn',
+                '-Xopt-in=com.airbnb.mvrx.InternalMavericksApi',
+        ]
+    }
+}
 
 android {
     resourcePrefix "mvrx_"
@@ -24,6 +29,7 @@ android {
             all {
                 jacoco {
                     includeNoLocationClasses = true
+                    jacoco.excludes = ['jdk.internal.*']
                 }
             }
         }
@@ -35,16 +41,17 @@ jacoco {
 }
 
 dependencies {
-    kapt AnnotationProcessors.lifecycle
-
-    api Libraries.rxAndroid
-    api Libraries.rxJava
+    api Libraries.kotlinCoroutines
 
     implementation Libraries.appcompat
+    implementation Libraries.fragment
+    implementation Libraries.viewModelSavedState
     implementation Libraries.lifecycleCommon
-    implementation Libraries.navigationFragmentKtx
+    implementation Libraries.viewModelKtx
+    implementation Libraries.runtimeKtx
 
     testImplementation TestLibraries.junit
+    testImplementation TestLibraries.kotlinCoroutinesTest
     testImplementation TestLibraries.mockito
     testImplementation TestLibraries.roboeletric
 }
