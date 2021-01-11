@@ -34,7 +34,6 @@ plugins.apply(AndroidMetaModulePlugin.class)
 
 allprojects {
     version = VERSION_NAME
-    group = GROUP
 
     repositories {
         google()
